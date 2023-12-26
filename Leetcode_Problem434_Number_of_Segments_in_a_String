@@ -1,0 +1,50 @@
+int countSegments(char* s) {
+	if (!s)
+		return 0;
+	char temp = ' ', *p = s;
+	int segments = 0;
+	while (*p != '\0')
+	{
+		if (*p != ' ' && temp == ' ')
+		{
+			temp = *p++;
+			segments++;
+		}
+		else if(*p++ == ' ')
+			temp = ' ';
+	}
+	return segments;
+}
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+int countSegments(char *s)
+{
+    int segments = 0, i = (s[0] == ' ') ? 1 : 0;
+    for (; i < strlen(s); i++)
+        segments += (s[i] == ' ' && s[i - 1] != ' ') ? 1 : 0; 
+    return segments + (((strlen(s) > 0) && (s[strlen(s) - 1] != ' ')) ? 1 : 0);
+}
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+int countSegments(char* s) {
+    int segments = 0, is_space = 1;
+    while (*s) {
+        if (*s++ == ' ') 
+            is_space = 1;
+        else 
+        {
+            if (is_space) 
+            {
+                is_space = 0;
+                segments++;
+            }
+        } 
+    }
+    return segments;
+}
